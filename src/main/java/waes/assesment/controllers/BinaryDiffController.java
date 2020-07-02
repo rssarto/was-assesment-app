@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import waes.assesment.resources.dto.DiffDataDTO;
 import waes.assesment.services.DiffService;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RequestMapping(value = BinaryDiffController.URI_PREFIX)
@@ -20,14 +21,14 @@ public class BinaryDiffController {
     }
 
     @PostMapping("/{diffId}/left")
-    public ResponseEntity<?> createLeftBinaryData(@PathVariable final UUID diffId, @RequestBody DiffDataDTO diffDataDTO){
-        this.diffService.create(diffDataDTO);
+    public ResponseEntity<?> createLeftBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO){
+        this.diffService.create(diffId, diffDataDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PostMapping("/{diffId}/right")
-    public ResponseEntity<?> createRightBinaryData(@PathVariable final UUID diffId, @RequestBody DiffDataDTO diffDataDTO){
-        this.diffService.create(diffDataDTO);
+    public ResponseEntity<?> createRightBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO){
+        this.diffService.create(diffId, diffDataDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 }

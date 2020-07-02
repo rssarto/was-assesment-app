@@ -17,7 +17,7 @@ public class DatabaseDiffStorageImpl implements DiffStorage {
     }
 
     @Override
-    public void create(DiffContent diffContent) {
+    public void create(final UUID id, DiffContent diffContent) {
     }
 
     @Override

@@ -6,6 +6,6 @@ import waes.assesment.resources.entities.DiffDataEntity;
 import java.util.UUID;
 
 public interface DiffStorage {
-    void create(DiffContent diffContent);
+    void create(final UUID id, DiffContent diffContent);
     DiffDataEntity findById(UUID diffDataId);
 }

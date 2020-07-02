@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -59,6 +58,17 @@ class BinaryDiffControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsString(diffDataDTO)))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void postLeftWithNoContent_shouldReturnBadRequest() throws Exception {
+        final String base64WaesLogoV2 = "";
+        final UUID diffId = UUID.randomUUID();
+        final DiffDataDTO diffDataDTO = new DiffDataDTO(base64WaesLogoV2);
+        this.mockMvc.perform(post(String.format("%s/%s/right", BinaryDiffController.URI_PREFIX, diffId))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsString(diffDataDTO)))
+                .andExpect(status().isBadRequest());
     }
 
 }
