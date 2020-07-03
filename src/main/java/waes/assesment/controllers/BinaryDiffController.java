@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import waes.assesment.resources.dto.DiffDataDTO;
+import waes.assesment.resources.enums.DataType;
 import waes.assesment.services.DiffService;
 
 import javax.validation.Valid;
@@ -20,15 +21,24 @@ public class BinaryDiffController {
         this.diffService = diffService;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{diffId}/left")
-    public ResponseEntity<?> createLeftBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO){
+    public void createLeftBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO){
+        diffDataDTO.setDataType(DataType.LEFT);
         this.diffService.create(diffId, diffDataDTO);
-        return new ResponseEntity(HttpStatus.CREATED);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{diffId}/right")
-    public ResponseEntity<?> createRightBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO){
+    public void createRightBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO){
+        diffDataDTO.setDataType(DataType.RIGHT);
         this.diffService.create(diffId, diffDataDTO);
-        return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    @GetMapping("/{diffId}")
+    public ResponseEntity<?> compare(@PathVariable final UUID diffId){
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }

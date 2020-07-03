@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 import waes.assesment.repositories.DiffDataRepository;
 import waes.assesment.resources.entities.DiffContent;
 import waes.assesment.resources.entities.DiffDataEntity;
+import waes.assesment.resources.enums.DataType;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -21,7 +23,7 @@ public class DatabaseDiffStorageImpl implements DiffStorage {
     }
 
     @Override
-    public DiffDataEntity findById(UUID diffDataId) {
+    public Map<DataType, DiffDataEntity> findById(UUID diffDataId) {
         return null;
     }
 }

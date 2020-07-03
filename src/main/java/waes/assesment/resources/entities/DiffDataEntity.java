@@ -3,6 +3,7 @@ package waes.assesment.resources.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import waes.assesment.resources.enums.DataType;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,5 +20,6 @@ public class DiffDataEntity {
     @Id
     private UUID id;
     private String base64Data;
+    private DataType dataType;
 
 }

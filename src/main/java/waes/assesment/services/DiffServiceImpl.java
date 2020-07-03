@@ -3,8 +3,11 @@ package waes.assesment.services;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import waes.assesment.resources.dto.DiffDataDTO;
+import waes.assesment.resources.dto.DiffResultDTO;
 import waes.assesment.resources.entities.DiffDataEntity;
+import waes.assesment.resources.enums.DataType;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -22,7 +25,12 @@ public class DiffServiceImpl implements DiffService {
     }
 
     @Override
-    public DiffDataEntity findByd(UUID diffDataId) {
+    public Map<DataType, DiffDataEntity> findByd(UUID diffDataId) {
         return this.diffStorage.findById(diffDataId);
+    }
+
+    @Override
+    public DiffResultDTO compare(UUID diffDataId) {
+        return null;
     }
 }
