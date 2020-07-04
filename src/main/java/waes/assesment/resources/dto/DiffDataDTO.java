@@ -3,6 +3,7 @@ package waes.assesment.resources.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import waes.assesment.exceptions.DiffDataNotExistsException;
 import waes.assesment.resources.entities.DiffContent;
 import waes.assesment.resources.enums.DataType;
 
@@ -14,14 +15,16 @@ import java.util.Objects;
 @Data
 public class DiffDataDTO implements DiffContent {
 
-    @NotBlank(message = "The attribute binaryData is mandatory.")
-    private String binaryData;
+    public static final String DATA_VALIDATION_MESSAGE = "The attribute data is mandatory.";
+
+    @NotBlank(message = DiffDataDTO.DATA_VALIDATION_MESSAGE)
+    private String data;
 
     private DataType dataType;
 
     @Override
     public String base64Content() {
-        return this.binaryData;
+        return this.data;
     }
 
     @Override
@@ -34,12 +37,12 @@ public class DiffDataDTO implements DiffContent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DiffDataDTO that = (DiffDataDTO) o;
-        return binaryData.equals(that.binaryData) &&
+        return data.equals(that.data) &&
                 dataType == that.dataType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(binaryData, dataType);
+        return Objects.hash(data, dataType);
     }
 }
