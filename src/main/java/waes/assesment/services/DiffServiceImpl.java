@@ -1,6 +1,5 @@
 package waes.assesment.services;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import waes.assesment.exceptions.DiffDataNotExistsException;
 import waes.assesment.resources.dto.ChangeLog;
@@ -18,7 +17,7 @@ public class DiffServiceImpl implements DiffService {
 
     private final DiffStorage diffStorage;
 
-    public DiffServiceImpl(@Qualifier("databaseDiffStorageImpl") DiffStorage diffStorage) {
+    public DiffServiceImpl(DiffStorage diffStorage) {
         this.diffStorage = diffStorage;
     }
 

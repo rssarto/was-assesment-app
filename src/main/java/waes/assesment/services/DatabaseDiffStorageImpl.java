@@ -1,5 +1,6 @@
 package waes.assesment.services;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import waes.assesment.exceptions.RecordAlreadyExistsException;
 import waes.assesment.exceptions.RecordNotFoundException;
@@ -15,6 +16,7 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Primary
 @Service
 public class DatabaseDiffStorageImpl implements DiffStorage {
 

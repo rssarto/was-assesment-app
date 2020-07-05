@@ -55,6 +55,7 @@ public class InMemoryDiffStorageImpl implements DiffStorage {
 
     /**
      * Find diff data by id.
+     *
      * @param diffDataId
      * @return Map<DataType, DiffDataEntity>
      * @throws RecordNotFoundException

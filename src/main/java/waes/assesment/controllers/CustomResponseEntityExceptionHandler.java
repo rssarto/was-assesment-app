@@ -41,7 +41,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
     @ExceptionHandler(RecordAlreadyExistsException.class)
     protected ResponseEntity<Object> handleRecordAlreadyExistsException(final RecordAlreadyExistsException recordAlreadyExistsException) {
-        final ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, recordAlreadyExistsException);
+        final ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, recordAlreadyExistsException);
         return this.buildResponseEntity(apiError);
     }
 

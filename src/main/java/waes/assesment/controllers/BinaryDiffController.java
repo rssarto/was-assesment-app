@@ -13,7 +13,7 @@ import java.util.UUID;
 @RequestMapping(value = BinaryDiffController.URI_PREFIX)
 @RestController
 public class BinaryDiffController {
-    public static final String URI_PREFIX = "/v1/diff";
+    public static final String URI_PREFIX = "/api/v1/diff";
 
     private final DiffService diffService;
 
