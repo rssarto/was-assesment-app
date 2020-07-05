@@ -18,7 +18,7 @@ public class DiffServiceImpl implements DiffService {
 
     private final DiffStorage diffStorage;
 
-    public DiffServiceImpl(@Qualifier("inMemoryDiffStorageImpl") DiffStorage diffStorage) {
+    public DiffServiceImpl(@Qualifier("databaseDiffStorageImpl") DiffStorage diffStorage) {
         this.diffStorage = diffStorage;
     }
 

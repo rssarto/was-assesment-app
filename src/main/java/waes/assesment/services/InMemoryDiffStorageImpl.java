@@ -12,6 +12,9 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * In memory Storage version
+ */
 @Service
 public class InMemoryDiffStorageImpl implements DiffStorage {
     private final Map<UUID, Map<DataType, DiffDataEntity>> diffDataStorage;
@@ -25,6 +28,7 @@ public class InMemoryDiffStorageImpl implements DiffStorage {
      *
      * @param id
      * @param diffContent
+     * @throws RecordAlreadyExistsException
      */
     @Override
     public void create(final UUID id, final DiffContent diffContent) {
@@ -50,8 +54,10 @@ public class InMemoryDiffStorageImpl implements DiffStorage {
     }
 
     /**
+     * Find diff data by id.
      * @param diffDataId
-     * @return
+     * @return Map<DataType, DiffDataEntity>
+     * @throws RecordNotFoundException
      */
     @Override
     public Map<DataType, DiffDataEntity> findById(final UUID diffDataId) {

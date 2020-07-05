@@ -12,7 +12,4 @@ public class WaesAssesmentAppApplication {
         SpringApplication.run(WaesAssesmentAppApplication.class, args);
     }
 
-    //TODO - validate the DiffDataDTO fields
-    //TODO - create database configuration properties for datasource bean
-
 }

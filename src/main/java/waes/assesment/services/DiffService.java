@@ -9,9 +9,24 @@ import java.util.Map;
 import java.util.UUID;
 
 public interface DiffService {
+    /**
+     * Create a new record.
+     * @param id
+     * @param diffDataDTO
+     */
     void create(UUID id, DiffDataDTO diffDataDTO);
 
+    /**
+     * Find by id.
+     * @param diffDataId
+     * @return
+     */
     Map<DataType, DiffDataEntity> findByd(UUID diffDataId);
 
+    /**
+     * Compare the pair data.
+     * @param diffDataId
+     * @return
+     */
     DiffResultDTO compare(UUID diffDataId);
 }
