@@ -9,5 +9,6 @@ import java.util.UUID;
 
 public interface DiffStorage {
     void create(final UUID id, DiffContent diffContent);
+
     Map<DataType, DiffDataEntity> findById(UUID diffDataId);
 }

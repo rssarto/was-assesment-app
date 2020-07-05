@@ -28,24 +28,24 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     }
 
     @ExceptionHandler(RecordNotFoundException.class)
-    protected ResponseEntity<Object> handleRecordNotFoundException(final RecordNotFoundException recordNotFoundException){
+    protected ResponseEntity<Object> handleRecordNotFoundException(final RecordNotFoundException recordNotFoundException) {
         final ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, recordNotFoundException);
         return this.buildResponseEntity(apiError);
     }
 
     @ExceptionHandler(DiffDataNotExistsException.class)
-    protected ResponseEntity<Object> handleDiffDataNotExistsException(final DiffDataNotExistsException diffDataNotExistsException){
+    protected ResponseEntity<Object> handleDiffDataNotExistsException(final DiffDataNotExistsException diffDataNotExistsException) {
         final ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, diffDataNotExistsException);
         return this.buildResponseEntity(apiError);
     }
 
     @ExceptionHandler(RecordAlreadyExistsException.class)
-    protected ResponseEntity<Object> handleRecordAlreadyExistsException(final RecordAlreadyExistsException recordAlreadyExistsException){
+    protected ResponseEntity<Object> handleRecordAlreadyExistsException(final RecordAlreadyExistsException recordAlreadyExistsException) {
         final ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, recordAlreadyExistsException);
         return this.buildResponseEntity(apiError);
     }
 
-    private ResponseEntity<Object> buildResponseEntity(final ApiError apiError){
+    private ResponseEntity<Object> buildResponseEntity(final ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 }

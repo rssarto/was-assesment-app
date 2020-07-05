@@ -22,41 +22,41 @@ public class InMemoryDiffStorageImpl implements DiffStorage {
 
     /**
      * Creates a new {@link DiffDataEntity}
+     *
      * @param id
      * @param diffContent
      */
     @Override
     public void create(final UUID id, final DiffContent diffContent) {
         final DiffDataEntity dataEntity = new DiffDataEntity(id, diffContent.base64Content(), diffContent.dataType());
-        try{
+        try {
             /**
              * Check if id already exists in the storage
              */
             final Map<DataType, DiffDataEntity> typeDiffDataEntityMap = this.findById(id);
             typeDiffDataEntityMap.computeIfPresent(diffContent.dataType(), (dataType, diffDataEntity) -> {
-                throw new RecordAlreadyExistsException(String.format("The id %s already exists, please use another id.", id.toString()));
+                throw new RecordAlreadyExistsException(String.format(RecordAlreadyExistsException.MESSAGE_TEMPLATE, id.toString()));
             });
 
             typeDiffDataEntityMap.put(diffContent.dataType(), dataEntity);
-        }catch (RecordNotFoundException ex){
+        } catch (RecordNotFoundException ex) {
             /**
              * The id was not found in the storage so create a new one.
              */
-            final Map<DataType, DiffDataEntity>  diffDataEntityMap = new HashMap<>();
+            final Map<DataType, DiffDataEntity> diffDataEntityMap = new HashMap<>();
             diffDataEntityMap.put(diffContent.dataType(), dataEntity);
             this.diffDataStorage.put(id, diffDataEntityMap);
         }
     }
 
     /**
-     *
      * @param diffDataId
      * @return
      */
     @Override
     public Map<DataType, DiffDataEntity> findById(final UUID diffDataId) {
         this.diffDataStorage.computeIfAbsent(diffDataId, (uuid) -> {
-            throw new RecordNotFoundException(String.format("The id %s was not found", uuid.toString()));
+            throw new RecordNotFoundException(String.format(RecordNotFoundException.MESSAGE_TEMPLATE, uuid.toString()));
         });
         return this.diffDataStorage.get(diffDataId);
     }

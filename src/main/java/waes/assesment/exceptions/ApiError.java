@@ -1,7 +1,7 @@
 package waes.assesment.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.HttpStatus;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class ApiError {
     private HttpStatus status;

@@ -10,6 +10,8 @@ import java.util.UUID;
 
 public interface DiffService {
     void create(UUID id, DiffDataDTO diffDataDTO);
+
     Map<DataType, DiffDataEntity> findByd(UUID diffDataId);
+
     DiffResultDTO compare(UUID diffDataId);
 }

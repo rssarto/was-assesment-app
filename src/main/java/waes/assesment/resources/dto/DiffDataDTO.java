@@ -3,7 +3,6 @@ package waes.assesment.resources.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import waes.assesment.exceptions.DiffDataNotExistsException;
 import waes.assesment.resources.entities.DiffContent;
 import waes.assesment.resources.enums.DataType;
 

@@ -23,22 +23,20 @@ public class BinaryDiffController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{diffId}/left")
-    public void createLeftBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO){
+    public void createLeftBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO) {
         diffDataDTO.setDataType(DataType.LEFT);
         this.diffService.create(diffId, diffDataDTO);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{diffId}/right")
-    public void createRightBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO){
+    public void createRightBinaryData(@PathVariable final UUID diffId, @RequestBody @Valid DiffDataDTO diffDataDTO) {
         diffDataDTO.setDataType(DataType.RIGHT);
         this.diffService.create(diffId, diffDataDTO);
     }
 
     @GetMapping("/{diffId}")
-    public ResponseEntity<?> compare(@PathVariable final UUID diffId){
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> compare(@PathVariable final UUID diffId) {
+        return new ResponseEntity<>(this.diffService.compare(diffId), HttpStatus.OK);
     }
-
-
 }
